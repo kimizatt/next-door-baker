@@ -4,7 +4,7 @@ const massive = require('massive')
 const session = require('express-session')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const ac = require('./controllers/authController')
-
+const pc = require('./controllers/productController')
 
 const app = express()
 app.use(express.json())
@@ -24,9 +24,14 @@ massive(CONNECTION_STRING)
     app.set('db', db)
 })
 
+// Authorization Endpoints
 app.post('/api/login', ac.login)
 app.post('/api/signup', ac.signup)
 app.delete('/api/logout', ac.logout)
+
+// Product display endpoints
+app.get('/api/products', pc.getAllProducts)
+
 
 app.listen(SERVER_PORT, () => 
 console.log(`Listening on port ${SERVER_PORT}`))

@@ -1,61 +1,103 @@
 import React, {Component} from 'react'
-
+import {signup} from '../redux/bakerReducer'
+import {connect} from 'react-redux'
 
 class Signup extends Component {
-    render () {
-        console.log('hit signup')
+	constructor() {
+		super()
+		this.state = {
+			username: '',
+			password: '',
+		}
+	}	
+	
+	handleChange = e => {
+		let {name, value} = e.target
+		
+		this.setState({ [name]: value })
+}
+
+	signupUser = () => {
+		this.props.signup(this.state.username, this.state.password)
+	}
+
+	render () {
+				let {username, password} = this.state
+			  //let user = this.props
     return (
       <div className='signup-page'>
-      	<p> Enter your information to become a baker!</p>
+      	<p> Choose a username and password to become a baker!</p>
       	<hr/>
       	<section id="signup-info">
       	<div className="signup-inputs">
 					<p>Username: </p>
-      		<input placeholder='username' />
+					<input onChange={this.handleChange}
+							className='input' 
+							
+							placeholder='username' 
+							type='text'
+							name='username'
+							value={username}
+							/>
 				</div>
       	<div className="signup-inputs">
 					<p>Password: </p>
-    			<input placeholder='password' />
+					<input className='input' 
+						placeholder='password'
+						type="password"
+						name='password'
+						value={password}
+						onChange={this.handleChange} />
 				</div>
 				<br/>
-				<div className="signup-inputs">
+				{/* <div className="signup-inputs">
 				<p>Brand Name:* </p>
 				
-					<input placeholder='Brand Name' /></div>
+					<input className='input' placeholder='Brand Name' /></div>
 				<div className="signup-inputs">
 				<p>First Name:</p>
-      		<input placeholder='First Name' />
+      		<input className='input' placeholder='First Name' />
 				</div>
       	<div className="signup-inputs">
 				<p>Last Name:</p>
-      		<input placeholder='Last Name' /></div>
+      		<input className='input' placeholder='Last Name' /></div>
 					<div className="signup-inputs">
 				<p>Pickup Location:** </p>
 			
-      		<input placeholder='Pickup Location' /></div>
+      		<input className='input' placeholder='Pickup Location' /></div>
 				<div className="signup-inputs">
 				<p>City:</p>
-      		<input placeholder='City' /></div>
+      		<input className='input' placeholder='City' /></div>
 				<div className="signup-inputs">
 				<p>State:</p>
-      		<input placeholder='State' /></div>
+      		<input className='input' placeholder='State' /></div>
 				<div className="signup-inputs">
 				<p>Zip Code:</p>
-					<input placeholder='Zip Code' /></div>
+					<input className='input' placeholder='Zip Code' /></div>
 				<div className="signup-inputs">
 				<p>Email:</p>
-      	<input placeholder='Email' /></div>
+      	<input className='input' placeholder='Email' /></div>
 				<div className="signup-inputs">
 				<p>Phone:</p>
-					<input placeholder='Phone' /></div>
-				<div id='extra-signup-info'>
-					<p>*This is the name you would like to display as the seller of your products.  If you don't choose a brand name, the display will show your first and last name.</p>
+					<input className='input' placeholder='Phone' /></div> */}
+
+				<button 
+					className='login-button'
+					onClick={this.signupUser}
+				>Sign Up</button>
+				</section>
+				{/* <div id='extra-signup-info'>
+					<p>*This is the name that will display as the seller of your products.  If you don't choose a brand name, the display will show your first and last name.</p>
 					<p>**(This is where you would like your customers to pickup their purchased items.  It may be your home address or a public spot like "The parking lot of a local business") </p>
-				</div>
-    		</section>
+				</div> */}
+    		
       </div>
     );
     }
   }
 
-export default Signup  
+function mapStateToProps(state) {
+	return state.user
+}
+
+export default connect(mapStateToProps, {signup})(Signup)  

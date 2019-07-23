@@ -26,7 +26,7 @@ module.exports = {
         let hash = await bcrypt.hash(password, salt)
         let [user] = await db.create_baker([username, hash])
         req.session.user = {
-            username: username, 
+            username: user.username, 
             id: user.id, 
             loggedIn: true
         }

@@ -1,11 +1,12 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .header {
   height: 10vh;
-  background-color: #f4dada;
+  background-color: #992e24;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,18 +16,34 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
   font-weight: 900;
-  color: black;
+  color: #e9e5dd;
   margin-left: 5%;
 }
+
+.nav-menu {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
 .login-button {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 900;
-  background-color: #dbe9b7; 
-  color: black;
-  border: solid black;
-  padding: 2px;
-  margin-right: 7%;
+  background-color: #992e24; 
+  color: #e9e5dd;
+  padding: 2px; 
+}
+.fa-bars {
+  width: 40px;
+  font-size: 26px;
+  border: none;
+  
+}
+.fa-bars > button {
+  margin-right: 10%;
+  border: none;
+  
 }
 
 .signup-page {
@@ -34,7 +51,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  
   margin: 5px 0 5px 5px;
 }
 #signup-info > p {

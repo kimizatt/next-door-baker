@@ -1,0 +1,23 @@
+#baker-button-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #e9e5dd;
+    
+
+}
+
+
+.baker-buttons {
+    background-color: #696464;
+    color: white;
+    padding: 3px;
+    margin: 10%;
+    height: 7%;
+    width: 25%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    border: #d04925 solid;
+}
