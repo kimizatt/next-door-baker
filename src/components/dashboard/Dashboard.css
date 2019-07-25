@@ -1,3 +1,4 @@
+
 .products-container {
     width: 100%;
     display: flex;
@@ -16,11 +17,4 @@
 .product-container > img {
     width: 170px;
     
-}
-
-.details-container {
-    display: flex;
-    flex-direction: column;
-    width: 175px;
-
 }

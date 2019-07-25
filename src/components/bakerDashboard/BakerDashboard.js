@@ -15,7 +15,8 @@ class BakerDashboard extends Component {
       <div id='baker-button-container'>
        
        <button className='baker-buttons'>Orders</button>
-       <button className='baker-buttons'>Products</button>
+       <Link to='/baker_products'>
+       <button className='baker-buttons'>Products</button></Link>
        <button className='baker-buttons'>Edit</button>
       </div>
     );

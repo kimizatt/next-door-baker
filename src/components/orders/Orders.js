@@ -1,21 +1,21 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+// import React, {Component} from 'react'
+// import {connect} from 'react-redux'
 
 
-class Orders extends Component {
-    componentDidMount() {
+// class Orders extends Component {
+//     componentDidMount() {
 
-    }
+//     }
     
-    render () {
-        return (
-        <div></div>
-        )
-    }
-}
+//     render () {
+//         return (
+//         <div></div>
+//         )
+//     }
+// }
 
-function mapStateToProps(state) {
-    return state.user
-}
+// function mapStateToProps(state) {
+//     return state.user
+// }
 
-export default connect(mapStateToProps, {getOrders})(Orders)
+// export default connect(mapStateToProps, {getOrders})(Orders)

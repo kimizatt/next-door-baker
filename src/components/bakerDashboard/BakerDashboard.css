@@ -21,3 +21,62 @@
     font-size: 20px;
     border: #d04925 solid;
 }
+.baker-products-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.baker-product-container {
+    width: 350px;
+    border: solid #696464;
+    box-shadow: 3px 3px 3px #696464;
+    margin: 4px;
+}
+
+.baker-product-container > img {
+    max-width: 325px;
+
+    
+}
+
+.baker-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+
+}
+
+.fa-plus-square {
+    font-size: 50px;
+    color: gray;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px auto 30px;
+}
+
+.add-product-container {
+    width: 350px;
+    height: 60vh;
+    box-shadow: 3px 3px 3px #696464;
+    margin: 4px;
+    border: solid #696464; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.normal-btn {
+    background-color: #d04925;
+    color: #e9e5dd;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}

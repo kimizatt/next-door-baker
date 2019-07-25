@@ -1,8 +1,8 @@
 import axios from 'axios'
-import {GET_ALL_PRODUCTS} from './actionTypes'
+import {GET_ALL_PRODUCTS, SAVE_PRODUCT} from './actionTypes'
 
 const initialState = {
-    products: []
+    products: []   
 }
 
 export const getAllProducts = () => {
@@ -19,6 +19,22 @@ export const getAllProducts = () => {
     }
 }
 
+export const deleteProduct = () => {
+
+}
+
+export const editProduct = () => {
+
+}
+
+export const saveProduct = (title, description, size, img_url, price, product_type ) => {
+    let data = axios.post(`/api/product`, {title, description, size, img_url, price, product_type}).then(res => res.data)
+    return{
+        type: SAVE_PRODUCT,
+        payload: data
+    }
+}
+
 export default function(state = initialState, action) {
     let {type, payload} = action
     switch(type) {
@@ -27,8 +43,10 @@ export default function(state = initialState, action) {
                 ...state,
                 products: payload
             }
-        case getAllProducts + '_REJECTED':
+        case GET_ALL_PRODUCTS + '_REJECTED':
             return {...state, error: payload}
+        case SAVE_PRODUCT + '_FULFILLED':
+            return {...state, products: payload}
         default:
             return state
     }

@@ -22,6 +22,9 @@ massive(CONNECTION_STRING)
 .then(db => {
     console.log('db connection successful')
     app.set('db', db)
+
+app.listen(SERVER_PORT, () => 
+console.log(`Listening on port ${SERVER_PORT}`))
 })
 
 // Authorization Endpoints
@@ -31,7 +34,5 @@ app.delete('/api/logout', ac.logout)
 
 // Product display endpoints
 app.get('/api/products', pc.getAllProducts)
+app.post('/api/product', pc.saveProduct)
 
-
-app.listen(SERVER_PORT, () => 
-console.log(`Listening on port ${SERVER_PORT}`))
