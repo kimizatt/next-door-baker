@@ -2,7 +2,7 @@ import './BakerDashboard.css'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllProducts, saveProduct} from '../../redux/productReducer'
-import Product from '../Product'
+import BakerProduct from '../BakerProduct'
 
 class BakerProducts extends Component {
     constructor () {
@@ -13,7 +13,6 @@ class BakerProducts extends Component {
             size: '',
             img_url: '',
             price: 0,
-            product_type: '',
             adding: false
         }
         
@@ -22,6 +21,7 @@ class BakerProducts extends Component {
         this.props.getAllProducts()
     }
 
+    
 
     handleChange = (e) => {
         let {name, value} = e.target
@@ -33,8 +33,9 @@ class BakerProducts extends Component {
     }
 
     save = () => {
+        let product_type = document.getElementById('product_type').value
         let {title, description, size, img_url, price} = this.state
-        this.props.saveProduct(title, description, size, img_url, price)
+        this.props.saveProduct(title, description, size, img_url, price, product_type)
         this.setState({title: '', description: '', size: '', img_url: '', price: ''})
     }
 
@@ -46,19 +47,30 @@ class BakerProducts extends Component {
             return (
             <div key={item.product_id}>
             <div className='baker-product-container'>
-            <img src={item.img_url} alt=' baked goods' />
+            <img src={item.img_url} alt='baked goods' />
             <div className='baker-details-container'>
                 <h1>{item.title}</h1>
                 <h2>{item.description}</h2>
                 <h2>{item.size}</h2>
                 <h3>{item.price}</h3>
+                <h3>{item.product_type}</h3>
                 </div>
-                <Product />
+                
+                <BakerProduct 
+                productId={item.product_id}
+                title={item.title}
+                description={item.description}
+                size={item.size}
+                price={item.price}
+                img_url={item.img_url}
+                product_type={item.product_type}
+                mount={this.componentDidMount}
+                />
                 </div>
             </div>
             )
         })
-        let {title, description, size, img_url, price, product_type, adding} = this.state
+        let {title, description, size, img_url, price, adding} = this.state
         return (
             <div className="baker-products-container">
             {bakerProducts}
@@ -123,7 +135,8 @@ class BakerProducts extends Component {
                         </div>
                 ): (
                     <div>
-                        <i onClick={this.flipAdding} class="far fa-plus-square"></i>
+                        
+                        <i onClick={this.flipAdding} className="far fa-plus-square"></i>
                     </div>
                 )
                 }

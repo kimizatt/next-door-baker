@@ -20,31 +20,102 @@
   margin-left: 5%;
 }
 
-.nav-menu {
-  display: flex;
-  justify-content: flex-end;
-  color: white;
+.nav-links {
+  margin: 0px 8px;
+  display: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  color: #e9e5dd;
+  text-decoration: none;
 }
 
-.login-button {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 900;
-  background-color: #992e24; 
+
+.nav-links-container {
+  margin: 0px 5px;
+  display: none;
+}
+
+.slidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #696464;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+.fa-window-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 36px;
+  color: #e9e5dd;  
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
   color: #e9e5dd;
-  padding: 2px; 
+  text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  padding: 3px;
 }
+.hide-animation {
+  animation-name: hide;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.show-animation {
+  animation-name: show;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hide {
+  0% {
+    width: 200px;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes show {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 200px;
+  }
+}
+
+  
+@media (min-width: 800px) {
+  .fa-bars {
+    display: none;
+  }
+  .nav-links {
+    display: initial;
+  }
+  .nav-links-container {
+    display: initial;
+  }
+}
+
+
 .fa-bars {
-  width: 40px;
-  font-size: 26px;
-  border: none;
-  
+  font-size: 26px; 
+  margin-right: 7%;
+  color: #e9e5dd;
 }
-.fa-bars > button {
-  margin-right: 10%;
-  border: none;
-  
-}
+
 
 .signup-page {
   display: flex;

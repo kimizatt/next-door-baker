@@ -5,6 +5,8 @@ const session = require('express-session')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const ac = require('./controllers/authController')
 const pc = require('./controllers/productController')
+const initSession = require('./middleware/initSession')
+const authCheck = require('./middleware/authCheck')
 
 const app = express()
 app.use(express.json())
@@ -23,6 +25,8 @@ massive(CONNECTION_STRING)
     console.log('db connection successful')
     app.set('db', db)
 
+app.use(initSession)
+
 app.listen(SERVER_PORT, () => 
 console.log(`Listening on port ${SERVER_PORT}`))
 })
@@ -34,5 +38,7 @@ app.delete('/api/logout', ac.logout)
 
 // Product display endpoints
 app.get('/api/products', pc.getAllProducts)
-app.post('/api/product', pc.saveProduct)
+app.post('/api/product', authCheck, pc.saveProduct)
+app.delete('/api/product/:productId', authCheck, pc.deleteProduct)
+app.put('/api/product/:productId', authCheck, pc.editProduct)
 

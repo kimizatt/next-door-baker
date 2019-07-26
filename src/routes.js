@@ -14,6 +14,7 @@ export default (
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/baker_products" component={BakerProducts} />
+        
         {/* <Route path="/baker_dash" component={BakerDashboard} /> */}
         {/* <Route path="/order_dashboard" component={Orders} /> */}
         {/* <Route path="/:baker_dash_products" components={BakerProducts} /> */}

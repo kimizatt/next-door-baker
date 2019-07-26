@@ -1,26 +1,20 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-
-
+import {render} from 'react-dom'
 import './BakerDashboard.css'
 
 class BakerDashboard extends Component {
   
-  handleClick = () => {
-
-  }
-  
   render () {
     return (
-      <div id='baker-button-container'>
-       
-       <button className='baker-buttons'>Orders</button>
-       <Link to='/baker_products'>
-       <button className='baker-buttons'>Products</button></Link>
-       <button className='baker-buttons'>Edit</button>
+      <div>
+        <h1>Tabs Demo</h1>
       </div>
-    );
+    
+      );
     }
   }
 
-export default BakerDashboard
+const container = document.createElement('div')
+document.body.appendChild(container)
+render(<BakerDashboard />, container)

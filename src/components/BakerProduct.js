@@ -1,9 +1,10 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {deleteProduct, editProduct} from '../redux/productReducer'
+import {deleteProduct, editProduct, getAllProducts} from '../redux/productReducer'
+import axios from 'axios';
 
-class Product extends Component {
+class BakerProduct extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -34,31 +35,10 @@ class Product extends Component {
         let newProductType = document.getElementById('newProductType').value
         let {productId} = this.props
         let {newTitle, newDescription, newSize, newImgurl, newPrice} = this.state
-        editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
-        this.setState({title: '', description: '', size: '', img_url: '', price: '', editing: !this.state.editing})
+        this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
         console.log(this.state)
     }
-// save = () => {
-    //     let newProductType = document.getElementById('newProductType').value
-    //     //let {productId, editProduct} = this.props
-    //     //let {newTitle, newDescription, newSize, newImgurl, newPrice} = this.state
-    //     // editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
-    //     // this.setState({title: '', description: '', size: '', img_url: '', price: '', editing: !this.state.editing})
-    //     editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType) {
-    //         axios
-    //             .put(`/api/product/${productId}`, {newTitle, newDescription, newSize, newImgurl, newPrice, newProductType})
-    //             .then(res => res.data)
-            
-                
-    //     console.log(this.state)
-    // }
-//}
-    // editPost = (productId) => {
-    //     axios.put(`/api/product/${productId}`, {newTitle, newDescription, newSize, newImgurl, newPrice, newProductType})
-    //     .then(res => res.data)
-    //     this.setState({newTitle, })
-
-    // }
+    
     componentDidUpdate(prevProps) {
         let {title, description, size, img_url, price, product_type} = prevProps
         if(title !== this.props.title||
@@ -76,10 +56,12 @@ class Product extends Component {
             newProductType: product_type, 
             editing: false
         })
+        console.log(this.state, 'current state')
     }
 
 
     render() {
+        
         let {newTitle, newDescription, newSize, newImgurl, newPrice, editing } = this.state
         return (
             <div>
@@ -123,7 +105,7 @@ class Product extends Component {
                             className="add-product-input"
                         />
                         <div>
-                        <label for='newProductType'>Type of Baked Goods:</label>
+                        <label htmlFor='newProductType'>Type of Baked Goods:</label>
 
                         <select id="newProductType" onChange={this.handleChange}>
                             <option value=''>--Please choose an option--</option>
@@ -138,16 +120,16 @@ class Product extends Component {
                         </select>
                         </div>
                             <div className="button-container">
-                            <button onClick={this.save} className="normal-btn">Save</button>
+                            <button onClick={(e)=> {this.save(e); this.flipEditing(e); this.props.mount()}} className="normal-btn">Save</button>
                             <button onClick={this.flipEditing} className='normal-btn'>Cancel</button>
                             </div>
                         </div>
                 ): (
+                
                 <div className='button-container'>
                 <button onClick={this.flipEditing} className='normal-btn'>Edit</button>
                 <button onClick={this.delete} className='normal-btn'>Delete</button>
-            
-                </div>
+                    </div>
                 )
                 }
             </div>
@@ -163,4 +145,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {deleteProduct, editProduct})(Product)
+export default connect(mapStateToProps, {getAllProducts, deleteProduct, editProduct})(BakerProduct)
