@@ -1,8 +1,8 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {deleteProduct, editProduct, getAllProducts} from '../redux/productReducer'
-import axios from 'axios';
+import {deleteProduct, editProduct, getAllProducts} from '../../redux/productReducer'
+import Upload from '../Upload'
 
 class BakerProduct extends Component {
     constructor(props) {
@@ -31,43 +31,28 @@ class BakerProduct extends Component {
         deleteProduct(productId)
     }
 
-    save = () => {
+    save =  () => {
         let newProductType = document.getElementById('newProductType').value
         let {productId} = this.props
         let {newTitle, newDescription, newSize, newImgurl, newPrice} = this.state
-        this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
-        console.log(this.state)
+   this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
+  
     }
-    
-    componentDidUpdate(prevProps) {
-        let {title, description, size, img_url, price, product_type} = prevProps
-        if(title !== this.props.title||
-            description !== this.props.description ||
-            size !== this.props.size||
-            img_url !== this.props.img_url||
-            price !== this.props.price||
-            product_type !== this.props.product_type)
-        this.setState({
-            newTitle: title,
-            newDescription: description,
-            newSize: size,
-            newImgurl: img_url,
-            newPrice: price,
-            newProductType: product_type, 
-            editing: false
-        })
-        console.log(this.state, 'current state')
+    updateUrl = (url) => {
+        this.setState({newImgurl: url})
     }
+   
 
 
     render() {
-        
         let {newTitle, newDescription, newSize, newImgurl, newPrice, editing } = this.state
         return (
+            
             <div>
+               
             <div >
                 {editing ? (
-                    <div>
+                    <div className=''>
                         <p>Title: </p>
                         <input 
                             value= {newTitle}
@@ -97,16 +82,8 @@ class BakerProduct extends Component {
                             name="newPrice"
                             className="add-product-input"
                         />
-                        <p>Image File: </p>
-                        <input 
-                            value={newImgurl}
-                            onChange={this.handleChange}
-                            name="newImgurl"
-                            className="add-product-input"
-                        />
                         <div>
                         <label htmlFor='newProductType'>Type of Baked Goods:</label>
-
                         <select id="newProductType" onChange={this.handleChange}>
                             <option value=''>--Please choose an option--</option>
                             <option name='newProductType' value='Breads'>Breads</option>
@@ -119,8 +96,31 @@ class BakerProduct extends Component {
                             <option name='newProductType' value='Miscellaneous'>Miscellaneous</option>
                         </select>
                         </div>
+                        <p>Image File: </p>
+                        <Upload updateUrl={this.updateUrl}/>
+                        
+                        {/* <input 
+                            value={newImgurl}
+                            onChange={this.handleChange}
+                            name="newImgurl"
+                            className="add-product-input"
+                        /> */}
+                        {/* <div>
+                        <label htmlFor='newProductType'>Type of Baked Goods:</label>
+                        <select id="newProductType" onChange={this.handleChange}>
+                            <option value=''>--Please choose an option--</option>
+                            <option name='newProductType' value='Breads'>Breads</option>
+                            <option name='newProductType' value='Sweet Breads'>Sweet Breads</option>
+                            <option name='newProductType' value='Muffins'>Muffins</option>
+                            <option name='newProductType' value='Cookies'>Cookies</option>
+                            <option name='newProductType' value='Brownies'>Brownies</option>
+                            <option name='newProductType' value='Pies'>Pies</option>
+                            <option name='newProductType' value='Cakes'>Cakes</option>
+                            <option name='newProductType' value='Miscellaneous'>Miscellaneous</option>
+                        </select>
+                        </div> */}
                             <div className="button-container">
-                            <button onClick={(e)=> {this.save(e); this.flipEditing(e); this.props.mount()}} className="normal-btn">Save</button>
+                            <button onClick={(e)=> {this.save(e); this.flipEditing(e)}} className="normal-btn">Save</button>
                             <button onClick={this.flipEditing} className='normal-btn'>Cancel</button>
                             </div>
                         </div>
@@ -129,11 +129,13 @@ class BakerProduct extends Component {
                 <div className='button-container'>
                 <button onClick={this.flipEditing} className='normal-btn'>Edit</button>
                 <button onClick={this.delete} className='normal-btn'>Delete</button>
+                    
                     </div>
                 )
                 }
             </div>
             </div>
+            
         )
     }
 }

@@ -12,7 +12,18 @@ module.exports = {
             req.session.user = {
                 username: existingUser.username,
                 id: existingUser.id,
-                loggedIn: true
+                loggedIn: true,
+                brandName: existingUser.brand_name,
+                firstName: existingUser.first_name,
+                lastName: existingUser.last_name,
+                locationPickup: existingUser.location_pickup,
+                city: existingUser.city,
+                state: existingUser.state,
+                zip: existingUser.zip,
+                email: existingUser.email,
+                phone: existingUser.phone,
+                image: existingUser.image
+
             }
             res.send(req.session.user)
         } else res.status(401).send('Username or password incorrect')
@@ -35,5 +46,28 @@ module.exports = {
     async logout(req, res) {
         req.session.destroy()
         res.sendStatus(200)
+    },
+
+    async editProfile (req, res) {
+        console.log(req.body, req.params)
+        let {id} = req.params
+        let {username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image} = req.body
+        const db = req.app.get('db')
+        let profile = await db.edit_profile([
+            +id, 
+            username,  
+            brandName,
+            firstName, 
+            lastName, 
+            locationPickup, 
+            city , 
+            state, 
+            zip, 
+            email, 
+            phone,
+            image
+        ])
+        console.log('PROFILE: ', profile);
+        res.send(profile)
     }
 }

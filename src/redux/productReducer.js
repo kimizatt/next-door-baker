@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_ALL_PRODUCTS, SAVE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT} from './actionTypes'
+import {GET_ALL_PRODUCTS, SAVE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, GET_DASHBOARD_PRODUCTS} from './actionTypes'
 
 const initialState = {
     products: []   
@@ -10,7 +10,6 @@ export const getAllProducts = () => {
     let data = axios
         .get('/api/products')
         .then(res => {
-            console.log(res.data)
            return  res.data})
     return {
         type: GET_ALL_PRODUCTS,
@@ -18,6 +17,19 @@ export const getAllProducts = () => {
         error: false
     }
 }
+
+// export const getDashboardProducts = () => {
+//     let data = axios
+//         .get('/api/products')
+//         .then(res => {
+//             console.log(res.data)
+//             return {
+//                 type: GET_DASHBOARD_PRODUCTS,
+//                 payload: data,
+//                 error: false
+//             }
+//         })
+// }
 
 export const deleteProduct = (productId) => {
     let data = axios.delete(`/api/product/${productId}`)
@@ -30,8 +42,9 @@ export const deleteProduct = (productId) => {
 
 export const editProduct = (productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType) => {
     let data = axios
-        .put(`/api/product/${productId}`, {newTitle, newDescription, newSize, newImgurl, newPrice, newProductType})
-        .then(res => res.data)
+    .put(`/api/product/${productId}`, {newTitle, newDescription, newSize, newImgurl, newPrice, newProductType})
+    .then(res =>  res.data)
+
     return {
         type: EDIT_PRODUCT,
         payload: data
@@ -56,12 +69,17 @@ export default function(state = initialState, action) {
             }
         case GET_ALL_PRODUCTS + '_REJECTED':
             return {...state, error: payload}
+        case GET_DASHBOARD_PRODUCTS + '_FULFILLED':
+            return {...state, products: payload}
+        case GET_DASHBOARD_PRODUCTS + '_REJECTED':
+            return {...state, error: payload}
         case SAVE_PRODUCT + '_FULFILLED':
             return {...state, products: payload}
         case DELETE_PRODUCT + '_FULFILLED':
             return {...state, products: payload}
         case EDIT_PRODUCT + '_FULFILLED':
-            return {...state, product: payload}
+            console.log(payload);
+            return {...state, products: payload}
         default:
             return state
     }

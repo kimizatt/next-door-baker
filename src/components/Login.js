@@ -25,10 +25,9 @@ class Login extends Component {
 	render () {
 				let {username, password} = this.state
 				// let {user} = this.props
-if(this.props.user.loggedIn) return <Redirect to="/baker_products" />
-				console.log(this.props)
+				if(this.props.user.loggedIn) return <Redirect to="/baker_tabs" />
     return (
-    <div className='login-page'>
+    	<div className='login-page'>
     	<div className='login-inputs'>
 				Username: {'  '}
 					<input 
@@ -49,9 +48,9 @@ if(this.props.user.loggedIn) return <Redirect to="/baker_products" />
 					onChange={this.handleChange}
 					className='input'
 				/>
-				
           <button onClick={() => this.loginUser()} className="login-button">Login</button>
-          <p>Not a baker yet?</p>
+          <br/>
+					<p>Not a baker yet?</p>
             <Link to='/signup'>	
           <button className='login-button'>Sign Up</button></Link>
       </div> 

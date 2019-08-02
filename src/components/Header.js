@@ -3,15 +3,18 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from '../redux/bakerReducer'
 
+
 class Header extends Component {
     constructor() {
         super()
         this.slidebar = React.createRef()
+        this.state = {
+            showButtons: false
+        }
     }
 
     
     flipShow = () => {
-        console.log(this.slidebar.current)
         let {current} = this.slidebar
         if (current.classList.contains('show-animation')) {
             current.classList.add('hide-animation')
@@ -21,12 +24,6 @@ class Header extends Component {
             current.classList.remove('hide-animation')
         }
     }
-
-    // handleClick() {
-    //     this.flipShow()
-    //     this.props.logout()
-    // }
-
 
     render () {  
     return (
@@ -53,9 +50,11 @@ class Header extends Component {
             <i className="far fa-window-close" onClick={this.flipShow}></i>
             <Link to='/login' onClick={this.flipShow} className='sidebar-links'>Login</Link>
             <Link to='/signup' onClick={this.flipShow} className='sidebar-links'>Signup</Link>
-            <Link to='/' onClick={this.flipShow} className='sidebar-links'>Home</Link>
             <Link to='/' onClick={(e) => {this.props.logout(e); this.flipShow(e)}} className='sidebar-links'>Logout</Link>
+            <br/>
+            <Link to='/' onClick={this.flipShow} className='sidebar-links'>Home</Link>
         </div>
+
         </div>
     );
     }

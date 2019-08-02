@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN, SIGNUP, LOGOUT, GET_USER} from './actionTypes'
+import { LOGIN, SIGNUP, LOGOUT, GET_USER, EDIT_PROFILE} from './actionTypes'
 
 const initialState = {
     user: {}, 
@@ -42,6 +42,16 @@ export const getUser = () => {
     }
 }
 
+export const editProfile = (id, username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image) => {
+    let data = axios
+        .put(`/api/profile/${id}`, {username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image})
+        .then(res => res.data[0])
+    return {
+        type: EDIT_PROFILE,
+        payload: data
+    }
+}
+
 export default function(state = initialState, action) {
     let {type, payload} = action
     switch (type) {
@@ -58,6 +68,8 @@ export default function(state = initialState, action) {
             return {...state, user: {}, redirect: true, error: false}
         case SIGNUP + '_FULFILLED':
             return {...state, user: payload, error: false}
+        case EDIT_PROFILE + '_FULFILLED': 
+            return {...state, user: payload}
         default: 
             return state
     }

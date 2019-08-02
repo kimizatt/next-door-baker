@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {signup} from '../redux/bakerReducer'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 class Signup extends Component {
 	constructor() {
@@ -24,6 +25,7 @@ class Signup extends Component {
 	render () {
 				let {username, password} = this.state
 			  //let user = this.props
+			  if(this.props.user.loggedIn) return <Redirect to="/baker_tabs" />
     return (
       <div className='signup-page'>
       	<p> Choose a username and password to become a baker!</p>

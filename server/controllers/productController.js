@@ -5,6 +5,12 @@ module.exports = {
         res.send(products)
     },
 
+    // async getDashboardProducts(req, res) {
+    //     const db = req.app.get('db')
+    //     let products = await db.get_dashboard_products()
+    //     res.send(products)
+    // },
+
     async saveProduct(req, res) {
         let {title, description, size, img_url, price, product_type} = req.body
         const db = req.app.get('db')
