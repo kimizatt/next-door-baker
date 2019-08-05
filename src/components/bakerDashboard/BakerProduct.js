@@ -35,11 +35,11 @@ class BakerProduct extends Component {
         let newProductType = document.getElementById('newProductType').value
         let {productId} = this.props
         let {newTitle, newDescription, newSize, newImgurl, newPrice} = this.state
-   this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
+        this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
   
     }
-    updateUrl = (url) => {
-        this.setState({newImgurl: url})
+    updateUrl = (newImgurl) => {
+        this.setState({newImgurl: newImgurl})
     }
    
 
@@ -97,7 +97,10 @@ class BakerProduct extends Component {
                         </select>
                         </div>
                         <p>Image File: </p>
-                        <Upload updateUrl={this.updateUrl}/>
+                        <Upload updateUrl={this.updateUrl}
+                            value={newImgurl}
+                            name='newImgurl'
+                        />
                         
                         {/* <input 
                             value={newImgurl}

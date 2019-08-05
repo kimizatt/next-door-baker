@@ -5,10 +5,12 @@ const session = require('express-session')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const ac = require('./controllers/authController')
 const pc = require('./controllers/productController')
+const oc = require('./controllers/orderController')
 const initSession = require('./middleware/initSession')
 const authCheck = require('./middleware/authCheck')
 const client = require('twilio')(process.env.REACT_APP_TWILIO_ACCOUNT_SID, process.env.REACT_APP_TWILIO_AUTH_TOKEN);
 const MessagingResponse = require('twilio').twiml.MessagingResponse
+const path = require('path')
 
 const aws = require('aws-sdk')
 const { S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = process.env;
@@ -41,13 +43,13 @@ app.use(session({
     }
 }))
 
-// client.messages
-//     .create({
-//         body: '',
-//         from: '',
-//         to: ''
-//     })
-//     .then(message => console.log(message.sid))
+client.messages
+    .create({
+        body: '',
+        from: '',
+        to: ''
+    })
+    .then(message => console.log(message.sid))
 
 massive(CONNECTION_STRING)
 .then(db => {
@@ -101,7 +103,14 @@ app.post('/api/product', authCheck, pc.saveProduct)
 app.delete('/api/product/:productId', authCheck, pc.deleteProduct)
 app.put('/api/product/:productId', authCheck, pc.editProduct)
 
+// Order endpoints
+app.post('/api/order', oc.saveOrder)
 
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(SERVER_PORT, () => 
 console.log(`Listening on port ${SERVER_PORT}`))

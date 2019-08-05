@@ -11,7 +11,7 @@ create table bakers (
     zip integer,
     email varchar(50),
     phone varchar(15) 
-)
+);
 
 CREATE TABLE products (
     product_id serial primary key,
@@ -22,4 +22,14 @@ CREATE TABLE products (
     price money,
     baker_id integer REFERENCES bakers(id),
     product_type varchar(15) 
+);
+
+CREATE TABLE orders (
+    order_id serial primary key,
+    product_id integer references products(product_id),
+    quantity integer,
+    total_cost money,
+    customer_name varchar(30),
+    customer_phone varchar(15),
+    baker_id integer references bakers(id)
 );

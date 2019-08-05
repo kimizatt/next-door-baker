@@ -48,7 +48,7 @@ class Profile extends Component {
             <div>
                 <BakerDashboard />
                 
-                <div>
+                <div className='profile-container'>
                     {editing ? (
                     <div>
                     <span>Username: {username}</span>
@@ -127,9 +127,15 @@ class Profile extends Component {
                         name="phone"
                         className = "profile-input"
                         ></input>
+
                     </span><br/>
                     <span>Upload Image: 
-                        
+                       <Upload 
+                       value={image}
+                       name='image'
+                       onChange={this.handleChange}
+                       updateUrl={this.props.updateUrl}
+                       /> 
                     </span><br/>
                     <button className='normal-btn' onClick={(e)=> {this.handleSave(e); this.flipEditing(e)}}>Save</button>
                     </div>

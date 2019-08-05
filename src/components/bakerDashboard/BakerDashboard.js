@@ -15,10 +15,10 @@ class BakerDashboard extends Component {
     if(error || redirect) return <Redirect to='/login' />
     // if(!user.loggedIn) return <div>Loading...</div>
     return (
-      <div>
-        <button className='normal-btn' ><Link to="/baker_products" style={{'textDecoration':'none', color: '#e9e5dd'}}>Products</Link></button>
-        <button className='normal-btn' ><Link to="/orders" style={{'textDecoration':'none', color: '#e9e5dd'}}>Orders</Link></button>
-        <button className='normal-btn' ><Link to="/profile" style={{'textDecoration':'none', color: '#e9e5dd'}}>Profile</Link></button>
+      <div className='tab-button-container'>
+        <button className='tab-btn' ><Link to="/baker_products" style={{'textDecoration':'none', color: '#e9e5dd'}}>Products</Link></button>
+        {/* <button className='normal-btn' ><Link to="/orders" style={{'textDecoration':'none', color: '#e9e5dd'}}>Orders</Link></button> */}
+        <button className='tab-btn' ><Link to="/profile" style={{'textDecoration':'none', color: '#e9e5dd'}}>Profile</Link></button>
       </div>
     
       );

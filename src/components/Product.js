@@ -23,6 +23,7 @@ class Product extends Component {
 
     render() {
         let {product} = this.props
+        console.log(product, 'product on product page')
         const {open} =this.state
         return (
             <div>
@@ -57,7 +58,14 @@ class Product extends Component {
                         <h3>{product.location_pickup}</h3>
                         <h3>{product.city}</h3>
                         
-                        <Contact product={product}    
+                        <Contact product={product}
+                                title={product.title}    
+                                size={product.size}    
+                                price={product.price}    
+                                name={product.first_name}
+                                phone={product.phone}
+                                product_id={product.product_id}
+                                baker_id={product.baker_id}    
                             closeModal={this.onCloseModal}/>
                         </div>
                     </Modal>

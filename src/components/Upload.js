@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { v4 as randomString } from 'uuid';
 import Dropzone from 'react-dropzone';
-import { GridLoader } from 'react-spinners';
+// import ReactCrop from 'react-image-crop'
+// import 'react-image-crop/dist/ReactCrop.css'
+
 
 
 class Upload extends Component {
@@ -12,6 +14,9 @@ class Upload extends Component {
     this.state = {
       isUploading: false,
       url: 'http://via.placeholder.com/200',
+      crop: {
+          aspect: 1/1
+      }
     };
   }
 
@@ -69,27 +74,32 @@ class Upload extends Component {
       });
   };
 
+  handleOnCropChange = (crop) => {
+      this.setState({crop})
+  }
+
   render() {
     const { url, isUploading } = this.state;
     return (
       <div className='dropzone'>
         <h1>Upload</h1>
-        
-        {/* <img src={url} alt="" width="200px" /> */}
-
-        <Dropzone
-          onDropAccepted={this.getSignedRequest}
-            >
-              {({getRootProps, getInputProps}) => (
-            <section>
-                <div {...getRootProps({className:"dropzone"})}>
-                <input {...getInputProps()} />
+                <Dropzone
+                onDropAccepted={this.getSignedRequest}
+                     >
+                {({getRootProps, getInputProps}) => (
+                <section>
+                    <div {...getRootProps({className:"dropzone"})}>
+                        <input {...getInputProps()} />
                     <img src={url} alt="" width="200px" />
                     <p>Drag 'n' drop a file, or click to select files</p>
                 </div>
-            </section>
+                </section>
             )}
         </Dropzone>
+        }
+        {/* <img src={url} alt="" width="200px" /> */}
+
+        
       </div>
     );
   }

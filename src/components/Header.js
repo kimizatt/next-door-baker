@@ -41,7 +41,7 @@ class Header extends Component {
         <span className="nav-links"><Link to='/signup'
             style={{'textDecoration':'none', color: '#e9e5dd'}}
             >Baker Signup</Link></span>
-        <span className="nav-links"><Link to='/' onClick={this.logout}
+        <span className="nav-links"><Link to='/' onClick={this.props.logout}
             style={{'textDecoration':'none', color: '#e9e5dd'}}
             >Logout</Link></span>
         </div>

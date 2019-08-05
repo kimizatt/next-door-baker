@@ -32,6 +32,9 @@
     height: 75px;
     width: 75px;
     border-radius: 50%;
+    /* border: solid black; */
+    object-fit: none;
+    overflow: hidden;
 }
 
 .baker-info {
@@ -43,12 +46,12 @@
     align-items: center;
 }
 
-.baker-info > img {
+.baker-info>img {
     height: 50px;
     width: 50px;
     width: 50%;
-    /* background-position: center center;
-    overflow: hidden; */
+    background-position: center center;
+    overflow: hidden;
     border-radius: 50%;
 }
 #modal-div {

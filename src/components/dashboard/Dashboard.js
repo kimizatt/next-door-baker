@@ -24,7 +24,11 @@ class Dashboard extends Component {
         .map(product => {
             return (
                 <Product product={product}
-                    key={product.product_id}/>
+                    key={product.product_id}
+                    product_id={product.product_id}
+                    baker_id={product.baker_id}
+                    />
+                    
         )})
 
     return (
