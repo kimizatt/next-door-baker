@@ -11,27 +11,36 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 3em;
+  padding: 0;
+  margin: 0;
+
 }
 #logo {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
   font-weight: 900;
-  color: #e9e5dd;
+  color: white;
   margin-left: 5%;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 1em;
 }
 
 .nav-links {
-  margin: 0px 8px;
+  margin: 0px 10px;
   display: none;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
-  color: #e9e5dd;
+  color: white;
   text-decoration: none;
+
 }
 
 
 .nav-links-container {
-  margin: 0px 5px;
+  margin: 0px 5px 5px;
   display: none;
 }
 
@@ -50,15 +59,15 @@
 .fa-window-close {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5px;
   font-size: 36px;
-  color: #e9e5dd;  
+  color: white;  
 }
 
 .sidebar-links {
   display: flex;
   flex-direction: column;
-  color: #e9e5dd;
+  color: white;
   text-decoration: none;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
@@ -106,6 +115,7 @@
   }
   .nav-links-container {
     display: initial;
+
   }
 }
 
@@ -113,7 +123,7 @@
 .fa-bars {
   font-size: 26px; 
   margin-right: 7%;
-  color: #e9e5dd;
+  color: white;
 }
 
 
@@ -166,10 +176,10 @@ input {
 
 .login-button {
     background-color: #696464;
-    color: #e9e5dd;
+    color: white;
     font-size: 14px;
     border-radius: 5px;
-    padding: 3px;
-    margin: 3px;
+    padding: 5px;
+    margin: 5px;
 
 }

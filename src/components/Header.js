@@ -29,20 +29,20 @@ class Header extends Component {
     return (
         <div >
         <nav className = "header">
-        <h1 id='logo'>Next Door Baker</h1>
+        <h1 id='logo'>Bakesby</h1>
         <i className="fas fa-bars" onClick={this.flipShow}></i>
         <div className="nav-links-container">
         <span className="nav-links"><Link to='/' 
-            style={{'textDecoration':'none', color: '#e9e5dd'}}
+            style={{'textDecoration':'none', color: 'white', fontWeight: 900}}
             >Home</Link></span>
         <span className="nav-links"><Link to='/login'
-            style={{'textDecoration':'none', color: '#e9e5dd'}}
+            style={{'textDecoration':'none', color: 'white', fontWeight: 900}}
             >Baker Login</Link></span>
         <span className="nav-links"><Link to='/signup'
-            style={{'textDecoration':'none', color: '#e9e5dd'}}
+            style={{'textDecoration':'none', color: 'white', fontWeight: 900}}
             >Baker Signup</Link></span>
         <span className="nav-links"><Link to='/' onClick={this.props.logout}
-            style={{'textDecoration':'none', color: '#e9e5dd'}}
+            style={{'textDecoration':'none', color: 'white', fontWeight: 900}}
             >Logout</Link></span>
         </div>
         </nav>

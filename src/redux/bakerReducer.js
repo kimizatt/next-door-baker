@@ -45,7 +45,7 @@ export const getUser = () => {
 export const editProfile = (id, username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image) => {
     let data = axios
         .put(`/api/profile/${id}`, {username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image})
-        .then(res => res.data[0])
+        .then(res => res.data)
     return {
         type: EDIT_PROFILE,
         payload: data
@@ -56,6 +56,7 @@ export default function(state = initialState, action) {
     let {type, payload} = action
     switch (type) {
         case LOGIN + '_FULFILLED':
+            console.log("login redux", payload)
             return {
                 ...state, 
                 user: payload,

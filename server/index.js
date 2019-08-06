@@ -106,6 +106,14 @@ app.put('/api/product/:productId', authCheck, pc.editProduct)
 // Order endpoints
 app.post('/api/order', oc.saveOrder)
 
+app.put('/api/updateimage', (req, res, next) => {
+    console.log('REQ: ', req.body, req.session)
+    db.update_image([req.body.url, req.session.user.id]).then(response => {
+        console.log(response);
+        res.status(200).send(response);
+    }).catch((err) => console.log(err) || res.sendStatus(500));
+})
+
 app.use(express.static(__dirname + '/../build'))
 
 app.get('*', (req, res) => {

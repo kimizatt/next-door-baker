@@ -73,7 +73,7 @@ class BakerProducts extends Component {
                 <h2>{item.description}</h2>
                 <h2>{item.size}</h2>
                 <h3>{item.price}</h3>
-                <h3>{item.product_type}</h3>
+                {/* <h3>{item.product_type}</h3> */}
                 </div>
                 
                 <BakerProduct 
@@ -146,7 +146,9 @@ class BakerProducts extends Component {
                         </div>
                         <p>Image File: </p>
                         <div>
-                            <Upload updateUrl={this.updateUrl}/>
+                            <Upload updateUrl={this.updateUrl}
+                                value={img_url}
+                            />
                         </div>
                         {/* <input 
                             value={img_url}

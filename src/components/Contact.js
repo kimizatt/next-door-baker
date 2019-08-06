@@ -52,7 +52,7 @@ class Contact extends Component {
                 {show ? (
                     <div className="order-container">
                         Quantity:
-                        <div>
+                        <div >
                         <input
                             type="number" 
                             name="quantity" 

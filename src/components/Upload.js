@@ -54,23 +54,29 @@ class Upload extends Component {
       .put(signedRequest, file, options)
       .then(response => {
         this.setState({ isUploading: false, url });
-        this.props.updateUrl(url)
+        axios.put('/api/updateimage', { url }).then(res => {
+            console.log(res);
+            let data =  JSON.parse(res.config.data)
+            this.setState({
+              url: data.url
+            })
+        }).catch(console.log);
         // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
-      })
-      .catch(err => {
-        this.setState({
-          isUploading: false,
-        });
-        // if (err.response.status === 403) {
-        //   alert(
-        //     `Your request for a signed URL failed with a status 403. Double check the CORS configuration and bucket policy in the README. You also will want to double check your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env and ensure that they are the same as the ones that you created in the IAM dashboard. You may need to generate new keys\n${
-        //       err.stack
-        //     }`
-        //   );
-        // } else {
-        //   alert(`ERROR: ${err.status}\n ${err.stack}`);
-        // }
-        console.log(err)
+    //bakerDashboard  })
+    //   .catch(err => {
+    //     this.setState({
+    //       isUploading: false,
+    //     });
+    //     if (err.response.status === 403) {
+    //       alert(
+    //         `Your request for a signed URL failed with a status 403. Double check the CORS configuration and bucket policy in the README. You also will want to double check your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env and ensure that they are the same as the ones that you created in the IAM dashboard. You may need to generate new keys\n${
+    //           err.stack
+    //         }`
+    //       );
+    //     } else {
+    //       alert(`ERROR: ${err.status}\n ${err.stack}`);
+    //    }
+    //  console.log(err)
       });
   };
 
@@ -78,11 +84,19 @@ class Upload extends Component {
       this.setState({crop})
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.url !== this.state.url) {
+      console.log('hit comp update')
+      setTimeout(() => this.render(), 3000)
+    }
+  }
+
   render() {
+    console.log('this.state :', this.state);
     const { url, isUploading } = this.state;
     return (
       <div className='dropzone'>
-        <h1>Upload</h1>
+        
                 <Dropzone
                 onDropAccepted={this.getSignedRequest}
                      >
@@ -90,14 +104,18 @@ class Upload extends Component {
                 <section>
                     <div {...getRootProps({className:"dropzone"})}>
                         <input {...getInputProps()} />
-                    <img src={url} alt="" width="200px" />
-                    <p>Drag 'n' drop a file, or click to select files</p>
+                    <img src={url} alt=""  />
+                    <div className='file-upload-instructions'>Drag 'n' drop a file or click to select files</div>
+                    {isUploading ? (<div style={{fontSize: 16}}>
+                      Loading...
+                    </div>):(null) 
+                      }
                 </div>
                 </section>
             )}
         </Dropzone>
-        }
-        {/* <img src={url} alt="" width="200px" /> */}
+        
+       
 
         
       </div>
@@ -107,17 +125,3 @@ class Upload extends Component {
 
 export default Upload;
 
-// style={{
-//     position: 'relative',
-//     width: 200,
-//     height: 200,
-//     borderWidth: 7,
-//     marginTop: 100,
-//     borderColor: 'rgb(102, 102, 102)',
-//     borderStyle: 'dashed',
-//     borderRadius: 5,
-//     display: 'flex',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     fontSize: 28,
-//   }}

@@ -97,20 +97,19 @@ class SendText extends Component {
             onSubmit={this.onSubmit}
             className={this.state.err? 'err sms-form': 'sms-form'}
           >
-            <div>
-              {/* <button onClick={this.createMessage}
-              >Create Text Message</button> */}
+            <div className="send-text-container">
+              
               <label htmlFor="to">To:</label>
-              <input
+              <input className='to-telephone-input'
                  type="tel"
                  name="to"
                  id="to"
                  value={phone}
                  onChange={this.onHandleChange}
               />
-            </div>
+            
             <div>
-              <label htmlFor="body">Body:</label>
+              <label htmlFor="body">Body:</label><br/>
               <textarea name="body" id="body"
                 value={this.state.message.body}
                 onChange={this.onHandleChange}
@@ -118,14 +117,17 @@ class SendText extends Component {
                 rows="5"
               ></textarea>
             </div>
-            <button type="submit"
+            </div>
+            <button 
+                className="normal-btn"
+                type="submit"
                 disabled={this.state.submitting}
             >
               Send message
             </button>
           </form>
               ): (
-                <button onClick={() => {this.handleShow(); this.props.saveOrder()}}>Create Text</button>    
+                <button className='normal-btn' onClick={() => {this.handleShow(); this.props.saveOrder()}}>Create Text</button>    
               )}
           </div>
         );

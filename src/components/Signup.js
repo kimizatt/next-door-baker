@@ -88,10 +88,7 @@ class Signup extends Component {
 					onClick={this.signupUser}
 				>Sign Up</button>
 				</section>
-				{/* <div id='extra-signup-info'>
-					<p>*This is the name that will display as the seller of your products.  If you don't choose a brand name, the display will show your first and last name.</p>
-					<p>**(This is where you would like your customers to pickup their purchased items.  It may be your home address or a public spot like "The parking lot of a local business") </p>
-				</div> */}
+				
     		
       </div>
     );

@@ -33,30 +33,45 @@ class Product extends Component {
                     
                         <div className='details-container'>
                             <div className='baker-info'>
-                            <h2>{product.city}</h2>
-                            <img src={product.image} alt='profile'/>
+                            <div className='baker-location'>
+                            <h2>{product.city},</h2>
+                            <h2>{product.state}</h2>
                             </div>
+                            <div>
+                            <img className='dashboard-profile-img' src={product.image} alt='profile'/>
+                            </div>
+                            </div>
+                            <section className='product-info'>
                             <h1>{product.title}</h1>
-                            
                             <h2>{product.size}</h2>
-                            <h3 className="price">{product.price}</h3>
-                            
+                            </section>
+                            <h3 className="price">{product.price}</h3> 
                         </div>
                     </div >
-                    <div id='modal-div'>
-                    <Modal open={open} onClose={this.onCloseModal}  center>
+                    
+                    <Modal open={open} classNames={{
+                        overlay: "modal-overlay",
+                        modal: "modal-content-div",
+                        closeIcon: "close-icon-svg"
+                    }} onClose={this.onCloseModal}  center>
                         <img className='modal-img' src={product.img_url} alt='baked goods'/>
-                        <div className='modal-info'>
-                        <h2>{product.title}</h2>
-                        <h2>{product.description}</h2>
-                        <h2>{product.size}</h2>
-                        <h3>{product.price}</h3>
-                        <div className='baker-info'>
-                            <h2>{product.brand_name}</h2>
-                            <img src={product.image} alt='profile'/>
-                        </div>
-                        <h3>{product.location_pickup}</h3>
-                        <h3>{product.city}</h3>
+                            <section className='modal-info-container'>
+                            <div className='modal-product-info'>
+                            <h2>{product.title}</h2>
+                            <h2>{product.description}</h2>
+                            <h2>{product.size}</h2>
+                            <h3>{product.price}</h3>
+                            <div className='modal-baker-details'>
+                            <div className='modal-baker-info'>
+                                <h2>{product.brand_name}</h2>
+                                <h2>{product.first_name} {product.last_name}</h2>
+                                <h3>{product.location_pickup}</h3>
+                                <h3>{product.city}, {product.state}</h3>
+                                </div>
+                                <img className='modal-profile-img' src={product.image} alt='profile'/>
+                            </div>
+                            </div>
+                            
                         
                         <Contact product={product}
                                 title={product.title}    
@@ -67,10 +82,10 @@ class Product extends Component {
                                 product_id={product.product_id}
                                 baker_id={product.baker_id}    
                             closeModal={this.onCloseModal}/>
-                        </div>
+                        </section>
                     </Modal>
                     </div>
-                </div>
+                
                     
                 
             )

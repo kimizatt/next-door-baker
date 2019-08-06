@@ -53,7 +53,7 @@ module.exports = {
         let {id} = req.params
         let {username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image} = req.body
         const db = req.app.get('db')
-        let profile = await db.edit_profile([
+        let [profile] = await db.edit_profile([
             +id, 
             username,  
             brandName,
@@ -67,7 +67,24 @@ module.exports = {
             phone,
             image
         ])
+        req.session.user = {
+            username: profile.username,
+            id: profile.id,
+            loggedIn: true,
+            brandName: profile.brand_name,
+            firstName: profile.first_name,
+            lastName: profile.last_name,
+            locationPickup: profile.location_pickup,
+            city: profile.city,
+            state: profile.state,
+            zip: profile.zip,
+            email: profile.email,
+            phone: profile.phone,
+            image: profile.image
+
+        }
+        res.send(req.session.user)
         console.log('PROFILE: ', profile);
-        res.send(profile)
+    
     }
 }

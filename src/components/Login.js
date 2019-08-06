@@ -28,6 +28,7 @@ class Login extends Component {
 				if(this.props.user.loggedIn) return <Redirect to="/baker_tabs" />
     return (
     	<div className='login-page'>
+			<div>
     	<div className='login-inputs'>
 				Username: {'  '}
 					<input 
@@ -55,6 +56,7 @@ class Login extends Component {
           <button className='login-button'>Sign Up</button></Link>
       </div> 
     </div>
+		</div>
     );
     }
   }

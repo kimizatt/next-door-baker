@@ -7,7 +7,7 @@ city = $7,
 state = $8, 
 zip = $9, 
 email = $10, 
-phone = $11, 
-image = $12
-where id = $1 returning *;
+phone = $11
+where id = $1;
 
+SELECT * FROM bakers WHERE id = $1;

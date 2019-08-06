@@ -37,6 +37,26 @@ class Profile extends Component {
         let {username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image} = this.state
         this.props.editProfile(id, username, brandName, firstName, lastName, locationPickup, city, state, zip, email, phone, image)
     }
+
+    componentDidUpdate(prevProps) {
+
+        if(prevProps !== this.props) {
+            console.log('hit update on profile')
+            this.setState({
+                username: this.props.user.username,
+                brandName: this.props.user.brandName,
+                firstName:this.props.user.firstName,
+                lastName: this.props.user.lastName,
+                locationPickup: this.props.user.locationPickup,
+                city: this.props.user.city,
+                state: this.props.user.state ,
+                zip: this.props.user.zip,
+                email: this.props.user.email, 
+                phone: this.props.user.phone,
+                image: this.props.user.image,
+            })
+        }
+    }
     
 
     render() {
@@ -48,11 +68,12 @@ class Profile extends Component {
             <div>
                 <BakerDashboard />
                 
-                <div className='profile-container'>
+                <div >
                     {editing ? (
-                    <div>
+                    <div className='profile-container'>
+                    <div className='profile-details-container'>
                     <span>Username: {username}</span>
-                    <br/>    
+                       
                     <span>Brand Name: 
                         <input 
                         placeholder={brandName} 
@@ -61,7 +82,7 @@ class Profile extends Component {
                         name="brandName"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </span>
                     <span>First Name: 
                         <input placeholder={firstName}
                         value = {firstName}
@@ -69,7 +90,7 @@ class Profile extends Component {
                         name="firstName"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </span>
                     <span>Last Name: 
                         <input placeholder={lastName}
                         value = {lastName}
@@ -77,8 +98,9 @@ class Profile extends Component {
                         name="lastName"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
-                    <span>Location for Pickup: Your home address or alternative location for customer to pickup products.<br/>
+                    </span>
+                    <p>Location for Pickup: Your home address or 
+                        alternative location for customer to pickup products.<br/>
                         
                         <input placeholder={locationPickup}
                         value = {locationPickup}
@@ -86,7 +108,7 @@ class Profile extends Component {
                         name="locationPickup"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </p>
                     <span>City: 
                         <input placeholder={city}
                         value = {city}
@@ -102,7 +124,7 @@ class Profile extends Component {
                         name="state"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </span>
                     <span>Zip Code: 
                         <input placeholder={state}
                         value = {zip}
@@ -110,7 +132,7 @@ class Profile extends Component {
                         name="zip"
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </span>
                     <span>Email Address: 
                         <input placeholder={email}
                         value = {email}
@@ -119,7 +141,7 @@ class Profile extends Component {
                         type='email'
                         className = "profile-input"
                         ></input>
-                    </span><br/>
+                    </span>
                     <span>Phone Number: 
                         <input placeholder={phone}
                         value = {phone}
@@ -127,20 +149,23 @@ class Profile extends Component {
                         name="phone"
                         className = "profile-input"
                         ></input>
-
                     </span><br/>
+                    </div>
+                    <div className='profile-upload-container'>
                     <span>Upload Image: 
                        <Upload 
                        value={image}
                        name='image'
                        onChange={this.handleChange}
-                       updateUrl={this.props.updateUrl}
                        /> 
+
                     </span><br/>
                     <button className='normal-btn' onClick={(e)=> {this.handleSave(e); this.flipEditing(e)}}>Save</button>
                     </div>
+                    </div>
                     ) : (
-                        <div>
+                        <main className='profile-container'>
+                        <div className='profile-details-container'>
                             <h3>Username: {username}</h3> 
                             <h4>Brand Name: {brandName}</h4>
                             <h4>Name: {firstName} {' '} {lastName}</h4>
@@ -151,10 +176,14 @@ class Profile extends Component {
                             <p>Email:{email}</p>
                             <p>Phone: {phone}</p>
                             <p>Image:</p>
-                            <img className='profile-img' src={image} alt="profile"></img>
+                            </div>
+                            <div className='profile-image-container'>
+                            <img className='profile-page-img' src={image} alt="profile"></img>
+                            
                             <br />
                         <button onClick={this.flipEditing} className='normal-btn'>Edit</button>
                         </div>
+                    </main>
                     )
                     }
                     </div> 
