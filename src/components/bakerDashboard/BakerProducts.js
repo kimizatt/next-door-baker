@@ -64,7 +64,7 @@ class BakerProducts extends Component {
             .map(item => {
             return (
             
-            <div classname='page-background'
+            <div classname='baker-page-background'
             key={item.product_id}>
                 
             <div className='baker-product-container'>

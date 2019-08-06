@@ -22,8 +22,10 @@
     border: solid black;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
+    margin-top: 50px;
 
 }
+
 
 .signup-page {
     width: 100%;
@@ -44,7 +46,7 @@
 
 #signup-info {
     width: 300px;
-    height: 500px;
+    height: 300px;
     background: white;
     border: solid black;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -104,8 +106,8 @@
     justify-content: space-around;
     border-radius: 5px;
     
-    
 }
+
 
 .baker-product-container {
     width: 350px;
@@ -116,6 +118,7 @@
     border-radius: 4px;
     background-color: white;
     margin: 10px 0 10px;
+    
 
 }
 
@@ -178,7 +181,7 @@
     background-repeat: none;
     width: 100%;
     height: 90vh;
-    background-color: rgba(248, 245, 245, 0..2);
+    background-color: rgba(248, 245, 245, 0.5);
     background-blend-mode: lighten;
     
 }
