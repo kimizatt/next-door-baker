@@ -65,7 +65,7 @@ class Profile extends Component {
         let {editing, username, firstName, lastName, brandName, locationPickup, city, state, zip, email, phone, image} = this.state
         
         return (
-            <div>
+            <div className='page-background'>
                 <BakerDashboard />
                 
                 <div >

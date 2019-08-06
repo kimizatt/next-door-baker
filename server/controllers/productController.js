@@ -43,4 +43,6 @@ module.exports = {
         console.log('res.send', product);
         res.status(200).send(product)
     }
+
+    
 }

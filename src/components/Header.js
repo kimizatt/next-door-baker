@@ -27,9 +27,11 @@ class Header extends Component {
 
     render () {  
     return (
-        <div >
+        <div>
         <nav className = "header">
-        <h1 id='logo'>Bakesby</h1>
+        <div className='logo-container'>
+        <i class="fas fa-cookie"></i>
+        <h1 id='logo'>bakesby </h1></div>
         <i className="fas fa-bars" onClick={this.flipShow}></i>
         <div className="nav-links-container">
         <span className="nav-links"><Link to='/' 
@@ -56,6 +58,8 @@ class Header extends Component {
         </div>
 
         </div>
+    
+
     );
     }
 }

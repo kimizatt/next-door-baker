@@ -26,7 +26,7 @@ class Product extends Component {
         console.log(product, 'product on product page')
         const {open} =this.state
         return (
-            <div>
+            <div >
                     
                     <div className='product-container' >
                         <img className='dash-img' onClick={this.onOpenModal} src={product.img_url} alt=' baked goods' />

@@ -28,10 +28,11 @@ class Signup extends Component {
 			  if(this.props.user.loggedIn) return <Redirect to="/baker_tabs" />
     return (
       <div className='signup-page'>
-      	<p> Choose a username and password to become a baker!</p>
-      	<hr/>
-      	<section id="signup-info">
-      	<div className="signup-inputs">
+      	<div id="signup-info">
+		  <p> Choose a username and password to become a baker!</p>
+      		<hr/>
+      		<section className='signup-container'>
+      		<div className="signup-inputs">
 					<p>Username: </p>
 					<input onChange={this.handleChange}
 							className='input' 
@@ -41,8 +42,8 @@ class Signup extends Component {
 							name='username'
 							value={username}
 							/>
-				</div>
-      	<div className="signup-inputs">
+					</div>
+      			<div className="signup-inputs">
 					<p>Password: </p>
 					<input className='input' 
 						placeholder='password'
@@ -86,10 +87,11 @@ class Signup extends Component {
 				<button 
 					className='login-button'
 					onClick={this.signupUser}
+					className='normal-btn'
 				>Sign Up</button>
 				</section>
 				
-    		
+				</div>	
       </div>
     );
     }
