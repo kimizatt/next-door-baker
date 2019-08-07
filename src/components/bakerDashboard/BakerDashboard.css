@@ -233,7 +233,7 @@
 }
 .profile-upload-container {
     width: 350px;
-    height: 300px;
+    /* height: 300px; */
     border: solid gray;
     
 }
