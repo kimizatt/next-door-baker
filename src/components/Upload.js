@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-// import './App.css';
 import axios from 'axios';
 import { v4 as randomString } from 'uuid';
 import Dropzone from 'react-dropzone';
-// import ReactCrop from 'react-image-crop'
-// import 'react-image-crop/dist/ReactCrop.css'
-
-
 
 class Upload extends Component {
   constructor() {
@@ -114,10 +109,7 @@ class Upload extends Component {
                 </section>
             )}
         </Dropzone>
-        
-       
-
-        
+         
       </div>
     );
   }

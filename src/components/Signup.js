@@ -87,7 +87,7 @@ class Signup extends Component {
 				<button 
 					className='login-button'
 					onClick={this.signupUser}
-					className='normal-btn'
+					
 				>Sign Up</button>
 				</section>
 				
