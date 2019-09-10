@@ -166,7 +166,7 @@ class Profile extends Component {
                     ) : (
                         <main className='profile-container'>
                         <div className='profile-details-container'>
-                            <h3>Username: {username}</h3> 
+                            <h3>UsernameX: {username}</h3> 
                             <h4>Brand Name: {brandName}</h4>
                             <h4>Name: {firstName} {' '} {lastName}</h4>
                             <p>Location for Pickup: {locationPickup}</p>
