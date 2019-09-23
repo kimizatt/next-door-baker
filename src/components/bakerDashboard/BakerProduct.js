@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {deleteProduct, editProduct, getAllProducts} from '../../redux/productReducer'
-import Upload from '../Upload'
+import UploadProduct from '../UploadProduct'
 
 class BakerProduct extends Component {
     constructor(props) {
@@ -31,6 +31,10 @@ class BakerProduct extends Component {
         deleteProduct(productId)
     }
 
+    updateUrl = (url) => {
+        this.setState({newImgurl: url})
+    }
+
     save =  () => {
         let newProductType = document.getElementById('newProductType').value
         let {productId} = this.props
@@ -38,11 +42,7 @@ class BakerProduct extends Component {
         this.props.editProduct(productId, newTitle, newDescription, newSize, newImgurl, newPrice, newProductType)
   
     }
-    updateUrl = (url) => {
-        this.setState({newImgurl: url})
-    }
-   
-
+    
 
     render() {
         let {newTitle, newDescription, newSize, url, newPrice, editing } = this.state
@@ -101,10 +101,10 @@ class BakerProduct extends Component {
                         </select>
                         </div>
                         <div className='upload-image-container'>
-                        <p>Image File: </p>
-                        <Upload updateUrl={this.updateUrl}
-                            value={url}
-                            name='newImgurl'
+                            <p>Image File: </p>
+                            <UploadProduct updateUrl={this.updateUrl}
+                                value={url}
+                                name='newImgurl'
                         />
                         </div>
                             <div className="button-container">

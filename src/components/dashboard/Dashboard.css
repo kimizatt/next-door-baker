@@ -88,7 +88,7 @@
     justify-content: space-around;
     align-items: center; 
     background-color: rgb(231, 228, 228);
-    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 textarea {
@@ -120,6 +120,10 @@ textarea {
     border: solid rgb(37, 36, 36);
 }
 
+h1, h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .modal-img {
     width: 400px;
     height: 450px;
@@ -149,6 +153,7 @@ textarea {
 
 .modal-product-info {
     margin-top: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 
@@ -178,6 +183,7 @@ textarea {
     align-content: center;
     align-items: center;
     margin: 4px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 @media (max-width: 800px) {

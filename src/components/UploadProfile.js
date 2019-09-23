@@ -3,7 +3,7 @@ import axios from 'axios';
 import { v4 as randomString } from 'uuid';
 import Dropzone from 'react-dropzone';
 
-class Upload extends Component {
+class UploadProfile extends Component {
   constructor() {
     super();
     this.state = {
@@ -115,5 +115,5 @@ class Upload extends Component {
   }
 }
 
-export default Upload;
+export default UploadProfile;
 

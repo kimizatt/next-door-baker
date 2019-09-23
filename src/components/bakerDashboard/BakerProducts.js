@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {getAllProducts, saveProduct} from '../../redux/productReducer'
 import BakerProduct from './BakerProduct'
 import BakerDashboard from './BakerDashboard'
-import Upload from '../Upload'
+import Upload from '../UploadProfile'
 import {Redirect} from 'react-router-dom'
 
 
@@ -17,7 +17,8 @@ class BakerProducts extends Component {
             size: '',
             img_url: '',
             price: 0,
-            adding: false
+            adding: false,
+            product_type: ''
         }
         
     }
@@ -28,7 +29,7 @@ class BakerProducts extends Component {
     componentDidUpdate(prevProps) {
         console.log('hit compupdate', prevProps.product, this.props)
         if(prevProps.product !== this.props) {
-            console.log('hit update products', this.props)
+            // console.log('hit update products', this.props)
             this.render()
         }
     }
@@ -48,6 +49,7 @@ class BakerProducts extends Component {
         let {title, description, size, img_url, price} = this.state
         this.props.saveProduct(title, description, size, img_url, price, product_type)
         this.setState({title: '', description: '', size: '', img_url: '', price: ''})
+        this.setState({adding: !this.state.adding})
     }
 
     updateUrl = (url) => {
@@ -74,7 +76,7 @@ class BakerProducts extends Component {
                 <h2>{item.description}</h2>
                 <h2>{item.size}</h2>
                 <h3>{item.price}</h3>
-                {/* <h3>{item.product_type}</h3> */}
+                <h3>{item.product_type}</h3>
                 </div>
                 
                 <BakerProduct 
@@ -91,7 +93,7 @@ class BakerProducts extends Component {
             </div>
             )
         })
-        let {title, description, size, img_url, price, adding} = this.state
+        let {title, description, size, img_url, price, adding, product_type} = this.state
         return (
             <div>
                 <BakerDashboard />
@@ -134,7 +136,7 @@ class BakerProducts extends Component {
                         <label for='product_type'>Type of Baked Goods:</label>
 
                         <select id="product_type" onChange={this.handleChange}>
-                            <option value=''>--Please choose an option--</option>
+                            <option value={product_type}>--Please choose an option--</option>
                             <option name='product_type' value='Breads'>Breads</option>
                             <option name='product_type' value='Sweet Breads'>Sweet Breads</option>
                             <option name='product_type' value='Muffins'>Muffins</option>
@@ -179,7 +181,7 @@ class BakerProducts extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('hit mapState', state.product)
+    // console.log('hit mapState', state.product)
     return {
         products: state.product,
         user: state.user

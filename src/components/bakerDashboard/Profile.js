@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import BakerDashboard from '../bakerDashboard/BakerDashboard'
 import {editProfile} from '../../redux/bakerReducer'
-import Upload from '../Upload'
+import UploadProfile from '../UploadProfile'
 
 class Profile extends Component {
     constructor(props) {
@@ -58,10 +58,9 @@ class Profile extends Component {
         }
     }
     
-
     render() {
-        console.log(this.props.user, 'props at profile render')
-        console.log(this.state);
+        // console.log(this.props.user, 'props at profile render')
+        // console.log(this.state);
         let {editing, username, firstName, lastName, brandName, locationPickup, city, state, zip, email, phone, image} = this.state
         
         return (
@@ -153,7 +152,7 @@ class Profile extends Component {
                     </div>
                     <div className='profile-upload-container'>
                     <span>Upload Image: 
-                       <Upload 
+                       <UploadProfile 
                        value={image}
                        name='image'
                        onChange={this.handleChange}
@@ -166,7 +165,7 @@ class Profile extends Component {
                     ) : (
                         <main className='profile-container'>
                         <div className='profile-details-container'>
-                            <h3>UsernameX: {username}</h3> 
+                            <h3>Username: {username}</h3> 
                             <h4>Brand Name: {brandName}</h4>
                             <h4>Name: {firstName} {' '} {lastName}</h4>
                             <p>Location for Pickup: {locationPickup}</p>
@@ -175,7 +174,6 @@ class Profile extends Component {
                             <p>Zip: {zip}</p>
                             <p>Email:{email}</p>
                             <p>Phone: {phone}</p>
-                            <p>Image:</p>
                             </div>
                             <div className='profile-image-container'>
                             <img className='profile-page-img' src={image} alt="profile"></img>

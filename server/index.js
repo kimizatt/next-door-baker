@@ -107,11 +107,19 @@ app.put('/api/product/:productId', authCheck, pc.editProduct)
 app.post('/api/order', oc.saveOrder)
 
 app.put('/api/updateimage', (req, res, next) => {
-    console.log('REQ: ', req.body, req.session)
+    // console.log('REQ: ', req.body, req.session)
     db.update_image([req.body.url, req.session.user.id]).then(response => {
         console.log(response);
         res.status(200).send(response);
     }).catch((err) => console.log(err) || res.sendStatus(500));
+})
+
+app.put('/api/updateproductimage', (req, res, next) => {
+  console.log('REQ: ', req.body)
+  db.update_product_image([req.body.url, req.body.productId]).then(response => {
+      console.log(response, "product url and productId");
+      res.status(200).send(response);
+  }).catch((err) => console.log(err) || res.sendStatus(500));
 })
 
 app.use(express.static(__dirname + '/../build'))
